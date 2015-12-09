@@ -1,7 +1,8 @@
+import 'source-map-support/register';
 import React from 'react';
 import chai, {expect} from 'chai';
-
-chai.use(require('../src/chai-react-element'));
+import matcher from '../src/chai-react-element';
+chai.use(matcher);
 
 describe('ReactElement matcher', function() {
 

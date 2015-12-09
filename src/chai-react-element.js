@@ -5,25 +5,24 @@ export default function(chai, utils) {
 
     registerMatcher(chai, 'prop', React.addons.TestUtils.isElement, function(name, expectedValue) {
 
-        function getActual(assertion) {
-            if (utils.flag(assertion, 'contains')) {
-                return _.filter(asArray(assertion._obj), elem => elem.props === type);
-
+        const getActual = () => {
+            if (utils.flag(this, 'contains')) {
+                return _.filter(asArray(this._obj), elem => prop(elem, name) === expectedValue);
             } else {
-                return [assertion._obj];
+                return [this._obj];
             }
         }
 
         const validateValue = arguments.length > 1;
-        const node = getActual(this, arguments)[0];
-        const actualValue = node.props && node.props[name];
+        const node = getActual()[0];
+        const actualValue = prop(node, name);
 
         const expectedValueMessage = () => validateValue ? `value ${expectedValue}` : `no value`;
 
         this.assert(
             actualValue && (!validateValue || actualValue === expectedValue),
-            `expected vdom ${JSON.stringify(node)} to contain a prop with name '${name}' and ${expectedValueMessage()}, but got ${actualValue}`,
-            `expected vdom ${JSON.stringify(node)} not to contain a prop with name '${name}' and ${expectedValueMessage()}, but got ${actualValue}`
+            `expected vdom ${JSON.stringify(this._obj)} to contain a prop with name '${name}' and ${expectedValueMessage()}, but got ${actualValue}`,
+            `expected vdom ${JSON.stringify(this._obj)} not to contain a prop with name '${name}' and ${expectedValueMessage()}, but got ${actualValue}`
         );
 
         return new chai.Assertion(actualValue);
@@ -85,7 +84,7 @@ function asArray(vdom){
     return res;
 }
 
-export function visitVDom(vdom, visitor) {
+function visitVDom(vdom, visitor) {
     visitor(vdom);
     var children = vdom.props && vdom.props.children;
     if(children) {
@@ -93,3 +92,14 @@ export function visitVDom(vdom, visitor) {
     }
 }
 
+function prop(elem, name) {
+    if (!elem) return;
+
+    if (elem.props) {
+        return elem.props[name];
+    } else if (elem._store && elem._store.props) {
+        return elem._store.props[name];
+    } else {
+        return;
+    }
+}
