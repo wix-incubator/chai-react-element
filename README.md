@@ -20,6 +20,10 @@ expect(expect(<div><span>hello</span></div>).to.include.elementOfType('span').wi
 ```
 
 ## Setup
+```
+npm install chai-react-element
+```
+
 ```javascript
 import chai, {expect} from 'chai';
 import matcher from 'chai-react-element';
