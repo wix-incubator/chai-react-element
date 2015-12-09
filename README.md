@@ -1,4 +1,9 @@
 # chai-react-element
+[![Build Status](https://travis-ci.org/electricmonk/chai-react-element.png)](https://travis-ci.org/electricmonk/chai-react-element)
+
+[![Dependency Status](https://david-dm.org/electricmonk/chai-react-element)](https://david-dm.org/electricmonk/chai-react-element)
+[![devDependency Status](https://david-dm.org/electricmonk/chai-react-element)](https://david-dm.org/electricmonk/chai-react-element#info=devDependencies)
+
 Accepting a React VDOM (`ReactElement`) root, this library provides chaining behavior and allows nested assertions using the `include` language chain:
 
 ## Usage
