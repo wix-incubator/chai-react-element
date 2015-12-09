@@ -15,11 +15,15 @@ expect(<div data-foo="bar"></div>).to.have.prop('data-foo', 'bar');
 
 expect(<div><div data-foo="bar"></div></div>).to.include.prop('data-foo', 'bar');
 
-expect(expect(<div><span>hello</span></div>).to.include.elementOfType('span').with.text('hello');
+expect(<div><span>hello</span></div>).to.include.elementOfType('span').with.text('hello');
 
 ```
 
 ## Setup
+```
+npm install chai-react-element
+```
+
 ```javascript
 import chai, {expect} from 'chai';
 import matcher from 'chai-react-element';
