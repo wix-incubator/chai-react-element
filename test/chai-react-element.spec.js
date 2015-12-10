@@ -35,7 +35,7 @@ describe('ReactElement matcher', function() {
 			expect(
 				() => {
 					expect(<div></div>).to.have.prop('a', 'b');
-				}).to.throw(/AssertionError: expected vdom {"type":"div".*} to contain a prop with name 'a' and value b, but got undefined/);
+				}).to.throw(/AssertionError: expected vdom <.*> to contain a prop with name 'a' and value b, but got undefined/);
 		});
 
 		it('is chainable', function() {
@@ -65,7 +65,7 @@ describe('ReactElement matcher', function() {
 			expect(
 				() => {
 					expect(<div></div>).to.have.elementOfType('span')
-				}).to.throw(/AssertionError: expected vdom {"type":"div".*} to have an element of type 'span', but got div/);
+				}).to.throw(/AssertionError: expected vdom <.*> to have an element of type 'span', but got div/);
 		});
 
 		it('is chainable', function() {

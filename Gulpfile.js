@@ -6,7 +6,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var argv = require('yargs').argv;
 
 gulp.task('clean', function () {
-    return del(["lib/**/*"]);
+    return del(["dist/**/*"]);
 });
 
 gulp.task('transpile', ['clean'], function () {
@@ -16,11 +16,11 @@ gulp.task('transpile', ['clean'], function () {
             "presets": ["react", "es2015"]
         }))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('lib/'));
+        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('test', ['transpile'], function () {
-    return gulp.src('lib/test/**/*.spec.js', {read: false})
+    return gulp.src('dist/test/**/*.spec.js', {read: false})
         .pipe(mocha({
             grep: argv.grep
         }))

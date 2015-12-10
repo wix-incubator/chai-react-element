@@ -2,7 +2,7 @@
   "name": "chai-react-element",
   "version": "0.0.3",
   "description": "A suite of Chai assertions for ReactElement VDOMs",
-  "main": "lib/chai-react-element.js",
+  "main": "dist/chai-react-element.js",
   "scripts": {
     "test": "gulp test",
     "build": "gulp transpile"
@@ -38,6 +38,7 @@
     "yargs": "^3.31.0"
   },
   "dependencies": {
-    "lodash": "^3.10.1"
+    "lodash": "^3.10.1",
+    "react-decompiler": "^0.1.1"
   }
 }

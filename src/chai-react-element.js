@@ -1,5 +1,6 @@
 import React from 'react/addons';
 import _ from 'lodash';
+import {decompile} from 'react-decompiler';
 
 export default function(chai, utils) {
 
@@ -21,8 +22,8 @@ export default function(chai, utils) {
 
         this.assert(
             actualValue && (!validateValue || actualValue === expectedValue),
-            `expected vdom ${JSON.stringify(this._obj)} to contain a prop with name '${name}' and ${expectedValueMessage()}, but got ${actualValue}`,
-            `expected vdom ${JSON.stringify(this._obj)} not to contain a prop with name '${name}' and ${expectedValueMessage()}, but got ${actualValue}`
+            `expected vdom ${decompile(this._obj)} to contain a prop with name '${name}' and ${expectedValueMessage()}, but got ${actualValue}`,
+            `expected vdom ${decompile(this._obj)} not to contain a prop with name '${name}' and ${expectedValueMessage()}, but got ${actualValue}`
         );
 
         return new chai.Assertion(actualValue);
@@ -34,8 +35,8 @@ export default function(chai, utils) {
 
         this.assert(
             actualValue === text,
-            `expected vdom ${JSON.stringify(node)} to have text '${text}', but got ${actualValue}`,
-            `expected vdom ${JSON.stringify(node)} not to have text '${text}', but got ${actualValue}`
+            `expected vdom ${decompile(node)} to have text '${text}', but got ${actualValue}`,
+            `expected vdom ${decompile(node)} not to have text '${text}', but got ${actualValue}`
         );
     });
 
@@ -52,8 +53,8 @@ export default function(chai, utils) {
 
         this.assert(
             candidate.type === type,
-            `expected vdom ${JSON.stringify(this._obj)} to have an element of type '${type}', but got ${candidate.type}`,
-            `expected vdom ${JSON.stringify(this._obj)} not to have an element of type '${type}', but got ${candidate.type}`
+            `expected vdom ${decompile(this._obj)} to have an element of type '${type}', but got ${candidate.type}`,
+            `expected vdom ${decompile(this._obj)} not to have an element of type '${type}', but got ${candidate.type}`
         );
 
         return new chai.Assertion(candidate);
