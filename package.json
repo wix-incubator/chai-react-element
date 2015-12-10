@@ -1,6 +1,6 @@
 {
   "name": "chai-react-element",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A suite of Chai assertions for ReactElement VDOMs",
   "main": "dist/src/chai-react-element.js",
   "scripts": {
@@ -20,7 +20,6 @@
     "react",
     "test"
   ],
-
   "author": "shai.yallin@gmail.com",
   "license": "MIT",
   "bugs": {
