@@ -13,10 +13,14 @@
     "url": "git+ssh://git@github.com/electricmonk/chai-react-element.git"
   },
   "keywords": [
+    "assertion",
+    "assert",
     "chai",
-    "test",
-    "react"
+    "chai-plugin",
+    "react",
+    "test"
   ],
+
   "author": "shai.yallin@gmail.com",
   "license": "MIT",
   "bugs": {
