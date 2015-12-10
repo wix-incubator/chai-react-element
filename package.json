@@ -5,7 +5,8 @@
   "main": "dist/src/chai-react-element.js",
   "scripts": {
     "test": "gulp test",
-    "build": "gulp transpile"
+    "build": "gulp transpile",
+    "start": "gulp dev"
   },
   "repository": {
     "type": "git",
@@ -32,9 +33,15 @@
     "gulp-babel": "^6.1.1",
     "gulp-mocha": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
     "mocha": "^2.3.4",
+    "mocha-loader": "^0.7.1",
     "react": "^0.13.3",
+    "source-map-loader": "^0.1.5",
     "source-map-support": "^0.4.0",
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0",
     "yargs": "^3.31.0"
   },
   "dependencies": {

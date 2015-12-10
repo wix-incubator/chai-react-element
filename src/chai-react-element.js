@@ -4,65 +4,53 @@ import {decompile} from 'react-decompiler';
 
 export default function(chai, utils) {
 
-    registerMatcher(chai, 'prop', React.addons.TestUtils.isElement, function(name, expectedValue) {
-
-        const getActual = () => {
-            if (utils.flag(this, 'contains')) {
-                return _.filter(asArray(this._obj), elem => prop(elem, name) === expectedValue);
-            } else {
-                return [this._obj];
-            }
-        }
+    registerMatcher(chai, 'prop', predicate, function(name, expectedValue) {
 
         const validateValue = arguments.length > 1;
-        const node = getActual()[0];
+        const node = _.find(getActual(this), elem => prop(elem, name) === expectedValue);
         const actualValue = prop(node, name);
 
-        const expectedValueMessage = () => validateValue ? `value ${expectedValue}` : `no value`;
+        const expectedValueMessage = () => validateValue ? ` and value ${expectedValue}, but got ${actualValue}` : ``;
 
         this.assert(
             actualValue && (!validateValue || actualValue === expectedValue),
-            `expected vdom ${decompile(this._obj)} to contain a prop with name '${name}' and ${expectedValueMessage()}, but got ${actualValue}`,
-            `expected vdom ${decompile(this._obj)} not to contain a prop with name '${name}' and ${expectedValueMessage()}, but got ${actualValue}`
+            `expected ${prettyPrint(this._obj)} to contain a prop with name '${name}'${expectedValueMessage()}`,
+            `expected ${prettyPrint(this._obj)} not to contain a prop with name '${name}'${expectedValueMessage()}`
         );
 
         return new chai.Assertion(actualValue);
     });
 
-    registerMatcher(chai, 'text', React.addons.TestUtils.isElement, function(text) {
-        const node = this._obj;
-        const actualValue = node.props && node.props['children'];
-
+    registerMatcher(chai, 'text', predicate, function(text) {
+        const actual = getActual(this);
+        const candidates = _.filter(actual, elem => elem.props && elem.props.children === text);
         this.assert(
-            actualValue === text,
-            `expected vdom ${decompile(node)} to have text '${text}', but got ${actualValue}`,
-            `expected vdom ${decompile(node)} not to have text '${text}', but got ${actualValue}`
+            candidates.length,
+            `expected ${prettyPrint(this._obj)} to have text '${text}'`,
+            `expected ${prettyPrint(this._obj)} not to have text '${text}'`
         );
     });
 
-    registerMatcher(chai, 'elementOfType', React.addons.TestUtils.isElement, function(type) {
-        function getActual(assertion) {
-            if (utils.flag(assertion, 'contains')) {
-                return _.filter(asArray(assertion._obj), elem => elem.type === type);
-            } else {
-                return [assertion._obj]
-            }
+    registerMatcher(chai, 'elementOfType', predicate, function(type) {
+
+        const actual = getActual(this);
+        const candidates = _.filter(actual, elem => elem.type === type);
+        this.assert(
+            candidates.length,
+            `expected ${prettyPrint(this._obj)} to have an element of type '${type}'`,
+            `expected ${prettyPrint(this._obj)} not to have an element of type '${type}'`
+        );
+
+        return new chai.Assertion(candidates);
+    });
+
+    function getActual(assertion) {
+        if (utils.flag(assertion, 'contains')) {
+            return flatten(assertion._obj);
+        } else {
+            return [].concat(assertion._obj);
         }
-
-        const candidate = getActual(this)[0];
-
-        this.assert(
-            candidate.type === type,
-            `expected vdom ${decompile(this._obj)} to have an element of type '${type}', but got ${candidate.type}`,
-            `expected vdom ${decompile(this._obj)} not to have an element of type '${type}', but got ${candidate.type}`
-        );
-
-        return new chai.Assertion(candidate);
-    });
-
-    chai.Assertion.addMethod('automationId', function(id) {
-        return this.prop('data-automation-id', id);
-    });
+    }
 }
 
 function registerMatcher(chai, name, predicate, matcher) {
@@ -77,11 +65,9 @@ function registerMatcher(chai, name, predicate, matcher) {
     });
 }
 
-function asArray(vdom){
+function flatten(vdom){
     var res = [];
-    visitVDom(vdom,function(vdomNode){
-        res.push(vdomNode);
-    });
+    _.forEach([].concat(vdom), () => visitVDom(vdom, res.push.bind(res)));
     return res;
 }
 
@@ -103,4 +89,12 @@ function prop(elem, name) {
     } else {
         return;
     }
+}
+
+function prettyPrint(vdom) {
+    return [].concat(vdom).map(decompile).join(', ');
+}
+
+function predicate(vdom) {
+    return _.all([].concat(vdom), React.addons.TestUtils.isElement);
 }
