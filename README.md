@@ -31,7 +31,7 @@ expect(<div><span></span><span>hello</span></div>).to.include.elementOfType('spa
 
 ```
 
-## Setup
+### Setup
 ```
 npm install chai-react-element
 ```
@@ -49,7 +49,7 @@ The plugin is exported as an ES6 module. If using ES5, please use:
 chai.use(require('chai-react-element').default);
 ```
 
-## Caveats
+### Caveats
 Chainable behavior is only supported for the `.elementOfType` assertion. This means that the `.prop` and `.text` assertions can only be used at the end of an assertion chain, and the following style is unsupported:
 ```javascript
 expect(<div data-foo="bar"><span></span></div>).to.have.prop('data-foo', 'bar').with.an.elementOfType('span')
