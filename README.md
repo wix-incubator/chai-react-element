@@ -59,12 +59,18 @@ Negative assertions may behave unexpectedly for nested assertions. For instance,
 expect(<div><span></span><span data-foo="bar"></span></div>).to.not.include.elementOfType('span').with.prop('data-foo');
 ```
 
+## Installation
+```
+$ npm install chai-react-element
+```
+
 ## Contributing
 
-### Installation
+### Setup
 This project uses Gulp for build and tests, and `webpack-dev-server` for running and debugging in-browser.
-To install the project, just run `npm install`.
-To start the development environment, run `npm start`, or, if you have Gulp installed globally, `gulp dev`. This runs tests using Mocha and in addition starts `webpack-dev-server` on port 8080.
+To install the project, just run `npm install`. 
+
+To start the development environment, run `npm start`, or, if you have Gulp installed globally, `gulp dev`. This runs tests using Mocha and in addition starts `webpack-dev-server` on port 8080. To run the tests, use `npm test` (or `gulp test`).
 
 ### Issues
 Please open an issue on the project's GitHub repo for any problem you might find. Please refrain from creating pull requests before discussing your problem in an issue.
