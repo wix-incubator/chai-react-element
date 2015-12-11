@@ -64,7 +64,7 @@ expect(<div><span></span><span data-foo="bar"></span></div>).to.not.include.elem
 ### Installation
 This project uses Gulp for build and tests, and `webpack-dev-server` for running and debugging in-browser.
 To install the project, just run `npm install`.
-To start the development environment, run `npm start`, or, if you have Gulp installed locally, `gulp dev`. This runs tests using Mocha and in addition starts `webpack-dev-server` on port 8080.
+To start the development environment, run `npm start`, or, if you have Gulp installed globally, `gulp dev`. This runs tests using Mocha and in addition starts `webpack-dev-server` on port 8080.
 
 ### Issues
 Please open an issue on the project's GitHub repo for any problem you might find. Please refrain from creating pull requests before discussing your problem in an issue.
