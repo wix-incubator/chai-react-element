@@ -33,7 +33,7 @@ expect(<div><span></span><span>hello</span></div>).to.include.elementOfType('spa
 
 ### Setup
 ```
-npm install chai-react-element
+$ npm install chai-react-element
 ```
 
 *Note*: currently only React 0.13.x is supported. Work on moving to React 0.14.x will commence in the near future.
@@ -57,11 +57,6 @@ expect(<div data-foo="bar"><span></span></div>).to.have.prop('data-foo', 'bar').
 Negative assertions may behave unexpectedly for nested assertions. For instance, the following example will fail as soon as it encounters the first `span` element, while it should fail only on the second element.
 ```javascript
 expect(<div><span></span><span data-foo="bar"></span></div>).to.not.include.elementOfType('span').with.prop('data-foo');
-```
-
-## Installation
-```
-$ npm install chai-react-element
 ```
 
 ## Contributing
