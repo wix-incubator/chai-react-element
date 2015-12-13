@@ -36,7 +36,7 @@ expect(<div><span></span><span>hello</span></div>).to.include.elementOfType('spa
 $ npm install chai-react-element
 ```
 
-*Note*: currently only React 0.13.x is supported. Work on moving to React 0.14.x will commence in the near future.
+> Note: currently only React 0.13.x is supported. Work on moving to React 0.14.x will commence in the near future.
 
 ```javascript
 import chai, {expect} from 'chai';
