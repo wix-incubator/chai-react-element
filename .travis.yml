@@ -1,6 +1,13 @@
 language: node_js
-
 node_js:
-  - "0.12"
-  - "node"
-  - "5.0"
+- '0.12'
+- node
+- '5.0'
+deploy:
+  provider: npm
+  email: shai.yallin@gmail.com
+  api_key:
+    secure: ZjACGNxvEaIJhGvQ5LrXHr2wL0UtZZ3HZXOU+54/IKRTNspM71FKJObGRGPf+dkwgQQYTCJvkEXM0cc5zFg54fpsUjXyjA2DsFvbNTfKRqMoJ0pGtAVhSCNTqwm9ITih+6TPtViwGhMnIi0Vfty7o0xdo2pVKgUJhRfBruWQivC6BpjowQHzbBPMjJLhtd/pik4NMX3ip+K7ySwy5CDmiTkiXZEIiHclBeD0RrN/49Qs1OMcmMcMfFLGyG7ReOgHw4FIizU8wkJQ/f++zsQpAefZKuZwrK2ZhMPT6rw8mh6kohNbGE8o0aiCiMrzT9zlAz7renfYVShcdbXtWbTCLMkkMJWTVqKPy4/S5T2oRzdbBLFBXAqtHcwTIT5y5Bit/KIvN9qEKY5YcG0UBdY3OgZKxe3qmhBVwLGqegzHWR4yTbHXK2jCkmFOOD7kXxDaW5ExCvmU2KYeGxftAt8r/utXZDuXO/ZUY2gILG2beMuD8SkhlgTs732h8sZ0WhPHCVFkN9dZe9g2lwDkMQ+x/xBpBtETpqCQMNd6fdi6JYM/5Mh1noTFPRYHOVoAR8qrur702Tckyatcbk69anLNEXvP9AC/BBmYOc0ckAme+DXKxPuzrOr84a9VmpgJFouk/0WQJHC9RmwVHfZNnKIyfCM4UYG8RqE4pJ7reyxYopc=
+  on:
+    tags: true
+    repo: electricmonk/chai-react-element
