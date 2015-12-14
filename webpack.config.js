@@ -5,7 +5,7 @@ module.exports = {
 	context: __dirname,
 	devtool: 'source-map',
 	entry: {
-		test: ['mocha!' + path.join(__dirname, 'dist', 'test', 'chai-react-element.spec.js')]
+		test: ['mocha!' + path.join(__dirname, 'dist', 'test', 'index.js')]
 	},
 	output: {
 		path          : path.join(__dirname, 'dist'),

@@ -1,6 +1,7 @@
 import React from 'react/addons';
 import _ from 'lodash';
 import {decompile} from 'react-decompiler';
+import predicate from './can-be-asserted';
 
 export default function(chai, utils) {
 
@@ -93,8 +94,4 @@ function prop(elem, name) {
 
 function prettyPrint(vdom) {
     return [].concat(vdom).map(decompile).join(', ');
-}
-
-function predicate(vdom) {
-    return _.all([].concat(vdom), React.addons.TestUtils.isElement);
 }

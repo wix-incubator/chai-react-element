@@ -6,7 +6,11 @@
 
 ## Motivation
 
-Accepting a React VDOM (`ReactElement`) root, this library provides chaining behavior and allows nested assertions using the `include` language chain. Working on `ReactElement`s, it allows making assertions on unrendered (or shallow-rendered) elements, making for lighter tests that do not rely on a DOM (be it fake or real).
+This library provides chaining behavior and allows nested assertions using the `include` language chain for React-style VDOMs. Assertions are made against unrendered (or shallow-rendered) elements, making for lighter tests that do not rely on a DOM (be it fake or real).
+
+By using duck typing, the plugin can accept a `ReactElement` or any object that has the same properties as a `ReactElement`:
+* A string `type` property
+* A `props` property that is an object, or no `props` property at all
 
 ### Alternatives
 There are several other Chai plugins intended to help make assertions on React objects. This library differs from the alternatives in the following manners:
