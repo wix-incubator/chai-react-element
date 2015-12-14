@@ -1,4 +1,3 @@
-import React from 'react/addons';
 import _ from 'lodash';
 import {decompile} from 'react-decompiler';
 import predicate from './can-be-asserted';
