@@ -40,6 +40,13 @@ describe('ReactElement matcher', function() {
 				}).not.to.throw();
 		});
 
+		it('asserts boolean prop', function() {
+			expect(
+					() => {
+						expect(<div disabled></div>).to.have.prop('disabled');
+					}).not.to.throw();
+		});
+
 		it('asserts nested element with prop', function() {
 			expect(
 				() => {
@@ -52,7 +59,7 @@ describe('ReactElement matcher', function() {
 			expect(
 				() => {
 					expect(<div></div>).to.have.prop('a', 'b');
-				}).to.throw(/AssertionError: expected <.*> to contain a prop with name 'a' and value b, but got undefined/);
+				}).to.throw(/AssertionError: expected <.*> to contain a prop with name 'a' and value b/);
 		});
 
 		it('is chainable', function() {

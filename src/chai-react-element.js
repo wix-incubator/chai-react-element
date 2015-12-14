@@ -8,18 +8,17 @@ export default function(chai, utils) {
     registerMatcher(chai, 'prop', predicate, function(name, expectedValue) {
 
         const validateValue = arguments.length > 1;
-        const node = _.find(getActual(this), elem => prop(elem, name) === expectedValue);
-        const actualValue = prop(node, name);
+        const candidates = _.filter(getActual(this), elem => prop(elem, name));
 
-        const expectedValueMessage = () => validateValue ? ` and value ${expectedValue}, but got ${actualValue}` : ``;
+        const expectedValueMessage = () => validateValue ? ` and value ${expectedValue}` : ``;
 
         this.assert(
-            actualValue && (!validateValue || actualValue === expectedValue),
+            candidates.length && (!validateValue || _.some(candidates, elem => prop(elem, name) === expectedValue)),
             `expected ${prettyPrint(this._obj)} to contain a prop with name '${name}'${expectedValueMessage()}`,
             `expected ${prettyPrint(this._obj)} not to contain a prop with name '${name}'${expectedValueMessage()}`
         );
 
-        return new chai.Assertion(actualValue);
+        return new chai.Assertion(candidates);
     });
 
     registerMatcher(chai, 'text', predicate, function(text) {
