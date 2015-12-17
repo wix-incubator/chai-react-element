@@ -30,6 +30,14 @@ describe('ReactElement matcher', function() {
 					expect(<div>hello</div>).to.not.have.text('world')
 				}).not.to.throw();
 		});
+
+		it('detects text in children array', function() {
+			expect(
+				() => {
+					debugger;
+					expect({type: 'div', props: {children: ['bar']}}).to.have.text('bar')
+				}).not.to.throw();
+		})
 	});
 
 	describe('.prop', function() {
