@@ -55,7 +55,7 @@ describe('ReactElement matcher', function() {
 					}).not.to.throw();
 		});
 
-		it.only('asserts boolean prop with false value', function() {
+		it('asserts boolean prop with false value', function() {
 			expect(
 				() => {
 					expect(<div disabled={false}></div>).to.have.prop('disabled', false);
