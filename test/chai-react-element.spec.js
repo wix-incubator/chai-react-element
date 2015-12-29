@@ -37,7 +37,7 @@ describe('ReactElement matcher', function() {
 					debugger;
 					expect({type: 'div', props: {children: ['bar']}}).to.have.text('bar')
 				}).not.to.throw();
-		})
+		});
 	});
 
 	describe('.prop', function() {
@@ -53,6 +53,13 @@ describe('ReactElement matcher', function() {
 					() => {
 						expect(<div disabled></div>).to.have.prop('disabled');
 					}).not.to.throw();
+		});
+
+		it.only('asserts boolean prop with false value', function() {
+			expect(
+				() => {
+					expect(<div disabled={false}></div>).to.have.prop('disabled', false);
+				}).not.to.throw();
 		});
 
 		it('asserts nested element with prop', function() {

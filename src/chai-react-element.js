@@ -7,7 +7,7 @@ export default function(chai, utils) {
     registerMatcher(chai, 'prop', predicate, function(name, expectedValue) {
 
         const validateValue = arguments.length > 1;
-        const candidates = _.filter(getActual(this), elem => prop(elem, name));
+        const candidates = _.filter(getActual(this), elem => hasProp(elem, name));
 
         const expectedValueMessage = () => validateValue ? ` and value ${expectedValue}` : ``;
 
@@ -76,6 +76,17 @@ function visitVDom(vdom, visitor) {
     if(children) {
         _.forEach([].concat(children), child => child && visitVDom(child, visitor));
     }
+}
+
+function hasProp(elem, name) {
+    if (!elem) return false;
+
+    if (elem.props) {
+        return elem.props.hasOwnProperty(name);
+    } else if (elem._store && elem._store.props) {
+        return elem._store.props.hasOwnProperty(name);
+    }
+    return false;
 }
 
 function prop(elem, name) {
