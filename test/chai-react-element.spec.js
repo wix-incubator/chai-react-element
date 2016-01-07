@@ -34,7 +34,6 @@ describe('ReactElement matcher', function() {
 		it('detects text in children array', function() {
 			expect(
 				() => {
-					debugger;
 					expect({type: 'div', props: {children: ['bar']}}).to.have.text('bar')
 				}).not.to.throw();
 		});

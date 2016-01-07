@@ -16,6 +16,18 @@ describe('The assertion predicate', function() {
         expect(predicate(<div><span></span></div>)).to.be.true;
     });
 
+    it('accepts a ReactElement from a local component class', function () {
+        let NonNativeComp = React.createClass({
+            render: function () {
+                return (<div></div>);
+            }
+        });
+
+        let comp = (<NonNativeComp />);
+
+        expect(predicate(comp)).to.be.true;
+    });
+
     it('accepts an object with a type field', function() {
         expect(predicate({type: 'div'})).to.be.true;
     });
