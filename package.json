@@ -49,6 +49,6 @@
   },
   "dependencies": {
     "lodash": "^3.10.1",
-    "react-decompiler": "^0.1.1"
+    "react-decompiler": "electricmonk/react-decompiler"
   }
 }

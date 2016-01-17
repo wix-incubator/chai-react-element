@@ -81,6 +81,13 @@ describe('ReactElement matcher', function() {
 				.to.be.an.instanceOf(chai.Assertion)
 				.and.to.have.property('_obj').that.has.text('hello')
 		});
+
+		it('handles undefined props gracefully', function() {
+			expect(
+				() => {
+					expect(<div data-foo={undefined}/>).to.include.prop('data-foo', undefined);
+				}).not.to.throw();
+		});
 	});
 
 	describe('.elementWithType', function() {
