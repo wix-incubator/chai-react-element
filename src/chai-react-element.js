@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import React from 'react';
 import {decompile} from 'react-decompiler';
 import predicate from './can-be-asserted';
 
@@ -74,7 +75,7 @@ function visitVDom(vdom, visitor) {
     visitor(vdom);
     var children = vdom.props && vdom.props.children;
     if(children) {
-        _.forEach([].concat(children), child => child && visitVDom(child, visitor));
+        React.Children.forEach(children, child => child && visitVDom(child, visitor));
     }
 }
 

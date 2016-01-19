@@ -69,6 +69,14 @@ describe('ReactElement matcher', function() {
 
 		});
 
+		it('asserts nested element with prop in non compacted array', function() {
+			expect(
+				() => {
+					expect(<div>{[null,[<div data-foo="bar"></div>]]}</div>).to.include.prop('data-foo', 'bar');
+				}).not.to.throw();
+
+		});
+
 		it('gives a detailed message when prop was not found', function() {
 			expect(
 				() => {
