@@ -40,7 +40,7 @@
     "gulp-watch": "^4.3.5",
     "mocha": "^2.3.4",
     "mocha-loader": "^0.7.1",
-    "react": "^0.13.3",
+    "react": ">=0.14",
     "source-map-loader": "^0.1.5",
     "source-map-support": "^0.4.0",
     "webpack": "^1.12.9",
@@ -49,6 +49,6 @@
   },
   "dependencies": {
     "lodash": "^3.10.1",
-    "react-decompiler": "electricmonk/react-decompiler"
+    "react-decompiler": "0.2.1"
   }
 }
