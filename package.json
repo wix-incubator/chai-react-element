@@ -1,6 +1,6 @@
 {
   "name": "chai-react-element",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A suite of Chai assertions for ReactElement VDOMs",
   "main": "dist/src/chai-react-element.js",
   "scripts": {
