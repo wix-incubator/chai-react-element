@@ -72,10 +72,16 @@ function flatten(vdom){
 }
 
 function visitVDom(vdom, visitor) {
-    visitor(vdom);
-    var children = vdom.props && vdom.props.children;
-    if(children) {
-        React.Children.forEach(children, child => child && visitVDom(child, visitor));
+    if(vdom === undefined){return}
+    if(Array.isArray(vdom)){
+        vdom.forEach(function(vdom){
+            visitVDom(vdom, visitor);
+        });
+    } else {
+        visitor(vdom);
+        if(vdom && vdom.props){
+            visitVDom(vdom.props.children, visitor);    
+        }    
     }
 }
 
