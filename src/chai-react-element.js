@@ -1,11 +1,11 @@
 import _ from 'lodash';
-import React from 'react';
+import ReactDOM from 'react-dom';
 import {decompile} from 'react-decompiler';
 import predicate from './can-be-asserted';
 
 export default function(chai, utils) {
 
-    registerMatcher(chai, 'prop', predicate, function(name, expectedValue) {
+    registerMatcher(chai, utils, 'prop', predicate, function(name, expectedValue) {
 
         const validateValue = arguments.length > 1;
         const candidates = _.filter(getActual(this), elem => hasProp(elem, name));
@@ -21,7 +21,7 @@ export default function(chai, utils) {
         return new chai.Assertion(candidates);
     });
 
-    registerMatcher(chai, 'text', predicate, function(text) {
+    registerMatcher(chai, utils, 'text', predicate, function(text) {
         const actual = getActual(this);
         const candidates = _.filter(actual, elem => elem.props && (elem.props.children === text || (utils.type(elem.props.children) == 'array' && ~elem.props.children.indexOf(text))));
         this.assert(
@@ -31,7 +31,7 @@ export default function(chai, utils) {
         );
     });
 
-    registerMatcher(chai, 'elementOfType', predicate, function(type) {
+    registerMatcher(chai, utils, 'elementOfType', predicate, function(type) {
 
         const actual = getActual(this);
         const candidates = _.filter(actual, elem => elem.type === type);
@@ -45,18 +45,29 @@ export default function(chai, utils) {
     });
 
     function getActual(assertion) {
+        const assertee = assertion._obj;
         if (utils.flag(assertion, 'contains')) {
-            return flatten(assertion._obj);
+            return flatten(assertee);
         } else {
-            return [].concat(assertion._obj);
+            return [].concat(assertee);
         }
+    }
+
+}
+
+function getAssertee(obj) {
+    if (obj._reactInternalComponent && obj._reactInternalComponent._currentElement) {
+        return obj._reactInternalComponent._currentElement;
+    } else {
+        return obj;
     }
 }
 
-function registerMatcher(chai, name, predicate, matcher) {
+function registerMatcher(chai, utils, name, predicate, matcher) {
     chai.Assertion.overwriteMethod(name, function(_super) {
         return function() {
             if(predicate(this._obj)){
+                utils.flag(this, 'object', getAssertee(this._obj));
                 return matcher.apply(this, arguments);
             } else {
                 return _super.apply(this, arguments);
@@ -80,8 +91,8 @@ function visitVDom(vdom, visitor) {
     } else {
         visitor(vdom);
         if(vdom && vdom.props){
-            visitVDom(vdom.props.children, visitor);    
-        }    
+            visitVDom(vdom.props.children, visitor);
+        }
     }
 }
 

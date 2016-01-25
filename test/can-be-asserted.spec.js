@@ -36,6 +36,11 @@ describe('The assertion predicate', function() {
         expect(predicate({type: 'div', props: {}})).to.be.true;
     });
 
+    it('accepts a duck that looks like a rendered DOM element', function() {
+        expect(predicate({_reactInternalComponent: {_currentElement: true}})).to.be.true;
+
+    });
+
     it('rejects undefined', function() {
         expect(predicate()).to.be.false;
     });

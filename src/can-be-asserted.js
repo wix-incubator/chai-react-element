@@ -9,6 +9,12 @@ export default function canBeAsserted(vdom) {
             && (!node.props || typeof node.props === 'object');
     }
 
+    function isReactRenderedDOM(node) {
+        return node
+            && node._reactInternalComponent
+            && node._reactInternalComponent._currentElement;
+    }
+
     return _.all([].concat(vdom), node =>
-        React.isValidElement(node) || isCompatibleObject(node));
+        React.isValidElement(node) || isCompatibleObject(node) || isReactRenderedDOM(node));
 }

@@ -41,6 +41,7 @@
     "mocha": "^2.3.4",
     "mocha-loader": "^0.7.1",
     "react": ">=0.14",
+    "react-dom": ">=0.14",
     "source-map-loader": "^0.1.5",
     "source-map-support": "^0.4.0",
     "webpack": "^1.12.9",
