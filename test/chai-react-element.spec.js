@@ -35,7 +35,7 @@ describe('ReactElement matcher', function() {
 		describe('for rendered DOM', assertContract(renderer.render.bind(renderer)));
 	}
 
-	describe.skip('for React VDOM', assertContract(vdom => vdom));
+	describe('for React VDOM', assertContract(vdom => vdom));
 
 	function assertContract(render) {
 		return function() {
