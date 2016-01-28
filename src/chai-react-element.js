@@ -34,7 +34,7 @@ export default function(chai, utils) {
     registerMatcher(chai, utils, 'elementOfType', predicate, function(type) {
 
         const actual = getActual(this);
-        const candidates = _.filter(actual, elem => elem.type === type);
+        const candidates = _.filter(actual, elem => elem && elem.type === type);
         this.assert(
             candidates.length,
             `expected ${prettyPrint(this._obj)} to have an element of type '${type}'`,
