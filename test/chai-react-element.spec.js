@@ -40,6 +40,10 @@ describe('ReactElement matcher', function() {
 	function assertContract(render) {
 		return function() {
 
+			it('should filter nulls', function() {
+				expect(render(<div>{null} <span>yo</span></div>)).to.include.elementOfType('span');
+			});
+
 			describe('.text', function () {
 				it('asserts innerText', function () {
 					expect(
@@ -70,6 +74,13 @@ describe('ReactElement matcher', function() {
 						() => {
 							expect({type: 'div', props: {children: ['bar']}}).to.have.text('bar')
 						}).not.to.throw();
+				});
+
+				it('filters nulls', function() {
+					expect(
+						() => {
+							expect(render(<div>{null} <span>yo</span></div>)).to.include.text('yo')
+					}).not.to.throw();
 				});
 			});
 
@@ -176,6 +187,13 @@ describe('ReactElement matcher', function() {
 						() => {
 							expect(render(<div><span></span></div>)).not.to.include.elementOfType('span')
 						}).to.throw(/AssertionError: expected <.*> not to have an element of type 'span'/);
+				});
+
+				it('filters nulls', function() {
+					expect(
+						() => {
+							expect(render(<div>{null} <span>yo</span></div>)).to.include.an.elementOfType('span')
+						}).not.to.throw();
 				});
 			});
 
