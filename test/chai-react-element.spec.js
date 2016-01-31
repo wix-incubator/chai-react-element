@@ -177,6 +177,10 @@ describe('ReactElement matcher', function() {
 							expect(render(<div><span></span></div>)).not.to.include.elementOfType('span')
 						}).to.throw(/AssertionError: expected <.*> not to have an element of type 'span'/);
 				});
+
+				it('should filter nulls', function() {
+					expect(render(<div>{null} <span></span></div>)).to.include.elementOfType('span');
+				});
 			});
 
 			describe('nesting behavior', function () {

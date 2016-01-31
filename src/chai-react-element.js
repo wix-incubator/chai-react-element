@@ -23,7 +23,7 @@ export default function(chai, utils) {
 
     registerMatcher(chai, utils, 'text', predicate, function(text) {
         const actual = getActual(this);
-        const candidates = _.filter(actual, elem => elem.props && (elem.props.children === text || (utils.type(elem.props.children) == 'array' && ~elem.props.children.indexOf(text))));
+        const candidates = _.filter(actual, elem => elem && elem.props && (elem.props.children === text || (utils.type(elem.props.children) == 'array' && ~elem.props.children.indexOf(text))));
         this.assert(
             candidates.length,
             `expected ${prettyPrint(this._obj)} to have text '${text}'`,
