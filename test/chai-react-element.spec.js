@@ -179,7 +179,8 @@ describe('ReactElement matcher', function() {
 				});
 
 				it('should filter nulls', function() {
-					expect(render(<div>{null} <span></span></div>)).to.include.elementOfType('span');
+					expect(render(<div>{null} <span>yo</span></div>)).to.include.elementOfType('span');
+					expect(render(<div>{null} <span>yo</span></div>)).to.include.text('yo')
 				});
 			});
 
