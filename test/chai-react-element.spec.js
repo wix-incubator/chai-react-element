@@ -40,6 +40,11 @@ describe('ReactElement matcher', function() {
 	function assertContract(render) {
 		return function() {
 
+			it('should filter nulls', function() {
+					expect(render(<div>{null} <span>yo</span></div>)).to.include.elementOfType('span');
+					expect(render(<div>{null} <span>yo</span></div>)).to.include.text('yo')
+			});
+
 			describe('.text', function () {
 				it('asserts innerText', function () {
 					expect(
@@ -176,11 +181,6 @@ describe('ReactElement matcher', function() {
 						() => {
 							expect(render(<div><span></span></div>)).not.to.include.elementOfType('span')
 						}).to.throw(/AssertionError: expected <.*> not to have an element of type 'span'/);
-				});
-
-				it('should filter nulls', function() {
-					expect(render(<div>{null} <span>yo</span></div>)).to.include.elementOfType('span');
-					expect(render(<div>{null} <span>yo</span></div>)).to.include.text('yo')
 				});
 			});
 
