@@ -15,6 +15,6 @@ export default function canBeAsserted(vdom) {
             && node._reactInternalComponent._currentElement;
     }
 
-    return _.all([].concat(vdom), node =>
+    return _.every([].concat(vdom), node =>
         React.isValidElement(node) || isCompatibleObject(node) || isReactRenderedDOM(node));
 }
