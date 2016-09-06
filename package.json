@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/electricmonk/chai-react-element.git"
+    "url": "git@github.com:wix/chai-react-element.git"
   },
   "keywords": [
     "assertion",
@@ -23,9 +23,9 @@
   "author": "shai.yallin@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/electricmonk/chai-react-element/issues"
+    "url": "https://github.com/wix/chai-react-element/issues"
   },
-  "homepage": "https://github.com/electricmonk/chai-react-element#readme",
+  "homepage": "https://github.com/wix/chai-react-element#readme",
   "devDependencies": {
     "babel": "^6.3.13",
     "babel-preset-es2015": "^6.3.13",
@@ -50,6 +50,6 @@
   },
   "dependencies": {
     "lodash": "4.12.0",
-    "react-decompiler": "0.2.1"
+    "react-decompiler": "https://github.com/wix/react-decompiler.git"
   }
 }
