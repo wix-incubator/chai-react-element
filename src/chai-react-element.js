@@ -1,10 +1,13 @@
 import _ from 'lodash';
 import ReactDOM from 'react-dom';
-import {decompile} from 'react-decompiler';
+import {decompile, options} from 'react-decompiler';
 import predicate from './can-be-asserted';
 
-export default function(chai, utils) {
-
+export default function(chai, utils, opt) {
+    if (opt && opt.decompilerOptions) {
+        _.assign(options, opt.decompilerOptions);
+    }
+    
     registerMatcher(chai, utils, 'prop', predicate, function(name, expectedValue) {
 
         const validateValue = arguments.length > 1;
