@@ -1,6 +1,5 @@
 # chai-react-element
-[![Build Status](https://travis-ci.org/electricmonk/chai-react-element.png)](https://travis-ci.org/electricmonk/chai-react-element)
-
+[![Build Status](https://travis-ci.org/wix/chai-react-element.svg?branch=master)](https://travis-ci.org/wix/chai-react-element)
 [![Dependency Status](https://david-dm.org/electricmonk/chai-react-element.svg)](https://david-dm.org/electricmonk/chai-react-element)
 [![devDependency Status](https://david-dm.org/electricmonk/chai-react-element/dev-status.svg)](https://david-dm.org/electricmonk/chai-react-element#info=devDependencies)
 
